@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -53,7 +54,8 @@ public class App extends Application {
         hBox.getChildren().addAll(btnOpen, btnClose);
         vBox.getChildren().addAll(hBox, textArea);
         Scene scene = new Scene(vBox, 600, 400);
-        stage.setTitle("Simple Text Viewer App");
+        stage.setTitle("Note App");
+        stage.getIcons().add(new Image("img/logo.png"));
         stage.setScene(scene);
         stage.show();
     }
