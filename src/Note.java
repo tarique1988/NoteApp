@@ -10,9 +10,15 @@ public class Note {
     public String getNotes() {
         String noteStr = "";
         for(String note: this.notes){
-            noteStr = noteStr.concat(note +"\n");
+            if(note != null){
+                noteStr = noteStr.concat(note +"\n");
+            }
         }
-        return noteStr;
+        if(noteStr.length()>1){
+            return noteStr.substring(0, noteStr.length()-1);
+        }
+
+        return "";
     }
 
     public Path getPath() { return this.path; }
