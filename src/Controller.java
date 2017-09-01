@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
-    private String defaulDirectory = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
+    private String defaultDirectory = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
     @FXML private Label fileLabel;
-    @FXML private TextArea textArea = new TextArea();
+    @FXML private TextArea textArea;
     private Note note;
     private File currentFile;
 
@@ -27,7 +27,7 @@ public class Controller implements Initializable{
         FileChooser fileChooser = getFileChooser("Open");
         File file = fileChooser.showOpenDialog(null);
         if(file != null){
-            defaulDirectory = file.getParentFile().getPath();
+            defaultDirectory = file.getParentFile().getPath();
             try {
                 List<String> lines = Files.readAllLines(file.toPath());
                 note = new Note(lines, file.toPath(), file.getName());
@@ -107,7 +107,7 @@ public class Controller implements Initializable{
         FileChooser fileChooser = getFileChooser(title);
         File file = fileChooser.showSaveDialog(null);
         if(file != null){
-            defaulDirectory = file.getParentFile().getPath();
+            defaultDirectory = file.getParentFile().getPath();
             String textString = textArea.getText();
             try {
                 note = new Note(Arrays.asList(textString.split("\n")), file.toPath(), file.getName());
@@ -132,20 +132,20 @@ public class Controller implements Initializable{
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        fileLabel.setText("File Name: None");
-    }
-
     private FileChooser getFileChooser(String title){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(title);
-        fileChooser.setInitialDirectory(new File(defaulDirectory));
+        fileChooser.setInitialDirectory(new File(defaultDirectory));
         FileChooser.ExtensionFilter extAll = new FileChooser.ExtensionFilter("text/html","*.txt","*.html");
         FileChooser.ExtensionFilter extTxt = new FileChooser.ExtensionFilter("text","*.txt");
         FileChooser.ExtensionFilter extHtml = new FileChooser.ExtensionFilter("html","*.html");
         fileChooser.setSelectedExtensionFilter(extTxt);
         fileChooser.getExtensionFilters().addAll(extAll, extTxt, extHtml);
         return fileChooser;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        fileLabel.setText("File Name: None");
     }
 }
