@@ -59,6 +59,7 @@ public class Controller implements Initializable{
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         } else{
             saveAs("Save");
         }
