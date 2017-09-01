@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class App extends Application {
 
@@ -12,6 +13,7 @@ public class App extends Application {
         stage.setTitle("Note App");
         stage.getIcons().add(new Image("img/logo.png"));
         stage.setScene(new Scene(loader.load(), 600, 400));
+        stage.initStyle(StageStyle.DECORATED);
         stage.show();
     }
 

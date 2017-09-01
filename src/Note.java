@@ -19,7 +19,7 @@ public class Note {
         }
 
         return "";
-        
+
     }
 
     public Path getPath() { return this.path; }

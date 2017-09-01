@@ -1,7 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -64,6 +63,7 @@ public class Controller implements Initializable{
             saveAs("Save");
         }
     }
+
     @FXML private void onSaveAs(){
         saveAs("Save As");
     }
@@ -111,7 +111,11 @@ public class Controller implements Initializable{
             String textString = textArea.getText();
             try {
                 note = new Note(Arrays.asList(textString.split("\n")), file.toPath(), file.getName());
-                Files.write(note.getPath(),"".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+                try{
+                    Files.write(note.getPath(), "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+                } catch (Exception e){
+                    System.out.println("File Does not Exist, Will Be Created Now.");
+                }
                 Files.write(note.getPath(), note.getNotes().getBytes(), StandardOpenOption.CREATE);
                 currentFile = file;
                 fileLabel.setText("File Name: "+file.getName());

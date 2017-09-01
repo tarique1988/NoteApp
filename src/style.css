@@ -2,4 +2,5 @@
    -fx-focus-color: transparent;
    -fx-faint-focus-color: transparent;
    -fx-border-color: transparent;
+   -fx-border-outline: transparent;
 }
